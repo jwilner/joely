@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-<h2>Your joeLy links</h2>
+<h2>your joeLinks</h2>
   {% if da_url %} 
     <p>
       <a href='{{ da_url.shortened }}' target='_blank'>
@@ -10,27 +10,22 @@
         {{ da_url.original_url }}
       </a>!
     </p>
-    <p>
-      The joeLink's stats are visible 
-      <a href='{{url_for('view_redirect_info',shortened=da_url.key)}}' target='_blank'>
-        here
-      </a>  
-    </p>
-    {% endif %}
-    <form method='POST'>
-        <input type='text' name='url' placeholder='shorten this link slightly'>
-        <input type='submit' name='shorten_dat'>
-    </form>
+  {% endif %}
   {% if urls.items %}
-    {% if urls.has_prev %}
-    <a href='{{url_for('front_page',page=urls.prev_num)}}' target='_blank'>
-      older joeLinks
-    </a>
-    {% endif %}
-    {% if urls.has_next %}
-    <a href='{{url_for('front_page',page=urls.next_num)}}' target='_blank'>
-      newer joeLinks
-    </a>
+    {% if urls.has_prev or urls.has_next %}
+    <div class='row'>
+        {% if urls.has_prev %}
+            <a href='{{url_for('front_page',page=urls.prev_num)}}' target='_blank'>
+                | older joeLinks |
+            </a>
+        {% endif %}
+        {% if urls.has_next %}
+            <a href='{{url_for('front_page',page=urls.next_num)}}' target='_blank'>
+                | newer joeLinks |
+            </a>
+        {% endif %}
+        <hr />
+    </div>
     {% endif %}
     <ul>
       {% for url in urls.items %}
@@ -43,24 +38,37 @@
             <a href='{{url.original_url}}' target='_blank'>
               {{url.original_url}}
             </a>
-          </p>
-          <p>
-            It was created {{url.formatted_date}}
-          </p>
-          <p>
-            Its deets are vizzy
+            <br />
+            created {{url.formatted_date}} | 
+            deets vizzy
             <a href='{{ url_for('view_redirect_info',shortened=url.key)}}'>
-              here.
+              here
             </a>
           </p>
         </li>
       {% endfor %} 
     </ul>
+    {% if urls.has_prev or urls.has_next %}
+    <div class='row'>
+        <hr />
+        {% if urls.has_prev %}
+            <a href='{{url_for('front_page',page=urls.prev_num)}}' target='_blank'>
+                | older joeLinks |
+            </a>
+        {% endif %}
+        {% if urls.has_next %}
+            <a href='{{url_for('front_page',page=urls.next_num)}}' target='_blank'>
+                | newer joeLinks |
+            </a>
+        {% endif %}
+    </div>
+    {% endif %}
   {% else %}
   <h3>
     Where have all the links gone? </ br>
     <small> Long time passing...</small>
   </h3>
   {% endif %}
+  <hr />
 {% endblock %} 
 

@@ -17,11 +17,21 @@
           <h1><a href="{{ url_for('front_page') }}">joeLy</a></h1>
         </li>
       </ul>
+      {% if 'email' in session %}
+      <form method='POST' action='{{ url_for('front_page')}}'>
+        <div class='small-7 large-8 columns'>
+          <input type='text' name='url' placeholder='shorten this link slightly'>
+        </div>
+        <div class='left'>
+          <input type='submit' class='button prefix' name='shorten_dat'>
+        </div>
+      </form>
       <ul class='right'>
-        <li>
-          <a href='{{url_for('log_out')}}'>log out</a>
+        <li class='has-form'>
+            <a class='button' href='{{url_for('log_out')}}'>log out</a>
         </li>
-    </ul>
+      </ul>
+      {% endif %}
     </nav>
 <div class='row'>
 	{% for message in get_flashed_messages() %}

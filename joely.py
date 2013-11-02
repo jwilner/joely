@@ -25,7 +25,7 @@ class URL(db.Model):
 
     @property
     def formatted_date(self):
-        return '{0}-{1}-{2}'.format(self.created.month,self.created.day,self.created.year)        
+        return self.created.strftime('%m-%d-%y %H:%M')
 
     @property
     def shortened(self):
@@ -51,7 +51,7 @@ class RedirectInstance(db.Model):
 
     @property
     def formatted_date(self):
-        return '{0}-{1}-{2}'.format(self.done_gone.month,self.done_gone.day,self.done_gone.year)        
+        return self.done_gone.strftime('%m-%d-%y %H:%M')
 
 def is_valid_url(url):
     return joely_utils.url_regex.search(url)
@@ -66,7 +66,6 @@ def suitable_email(email):
 @app.route('/<int:page>',methods = ['POST','GET'])
 def front_page(page=1):
     if 'email' not in session:
-        flash('You have to be logged in to view this page.')
         return redirect(url_for('login'))
 
     da_url = None
