@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>
+  info for <a href='{{url.shortened}}'>{{url.shortened}}</a>
+</h2>
+{% if not rs.items %}
+<p>
+  No one wants to click your link... sorry.
+</p>
+{% else %}
+<ol>
+{% for r in rs.items %}
+  <li>
+  Used on {{ r.formatted_date }}
+  </li>
+{% endfor %}
+</ol>
+{% endif %}
+{% endblock %}

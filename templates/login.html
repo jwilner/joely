@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Log into joeLy, the most pointless site not on the web!</h2>
+{% if error %}
+  <p>
+    Uh... you did something wrong.
+  </p>
+{% endif %}
+<form action='{{url_for('login')}}' method='POST'>
+  <input type='email' name='email' placeholder='da email'>
+  <input type='password' name='password'>
+  <input type='submit'>
+  <p>
+    Not a memba yet?
+    <a href='{{ url_for('new_user') }}'>
+      Click here.
+    </a>
+  </p>
+</form>
+{% endblock %}

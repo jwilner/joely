@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if errors %}
+<ul>
+  {% if 'password' in errors %}
+    <li>Passwords must not suck. </li>
+  {% endif %}
+  {% if 'email' in errors %}
+    <li>There's no way that's a real email. </li>
+  {% endif %}
+</ul>
+{% endif %}
+<form method='POST' action='{{url_for('new_user')}}'>
+  <input type='email' name='email' placeholder='please provide an email'>
+  <input type='password' name='password' placeholder='please provide a password'>
+  <input type='password' name='confirm' placeholder='you know the drill...'>
+  <input type='submit'>
+</form>
+{% endblock %}

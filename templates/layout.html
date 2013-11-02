@@ -1,0 +1,56 @@
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>joeLy</title> 
+<!-- Foundation -->
+<link rel="stylesheet" href="{{url_for('static', filename='css/foundation.css')}}" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/normalize.css')}}" />
+<script src="{{url_for('static', filename='js/vendor/custom.modernizr.js')}}"></script>
+
+
+</head>
+<body>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <!-- Title Area -->
+        <li class="name">
+          <h1><a href="{{ url_for('front_page') }}">joeLy</a></h1>
+        </li>
+      </ul>
+      <ul class='right'>
+        <li>
+          <a href='{{url_for('log_out')}}'>log out</a>
+        </li>
+    </ul>
+    </nav>
+<div class='row'>
+	{% for message in get_flashed_messages() %}
+		<div class=flash>{{message}}</div>
+	{% endfor %}
+	{% block body %}{% endblock %}
+</div>
+
+<script>
+document.write('<script src=' +
+('__proto__' in {} ? 'static/js/vendor/zepto' : 'static/js/vendor/jquery') +
+'.js><\/script>')
+</script>
+<script src="{{url_for('static', filename='js/foundation/foundation.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.alerts.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.clearing.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.cookie.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.dropdown.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.forms.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.joyride.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.magellan.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.orbit.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.placeholder.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.reveal.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.section.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.tooltips.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.topbar.js')}}"></script>
+<script src="{{url_for('static', filename='js/foundation/foundation.interchange.js')}}"></script>
+<script>
+$(document).foundation();
+</script>
+</body>
